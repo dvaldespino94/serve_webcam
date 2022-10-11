@@ -1,0 +1,11 @@
+Generic Digital camera (usb-0000:02:00.0-2.2):
+	/dev/video0
+
+USB camera (usb-0000:02:00.0-2.3):
+	/dev/video1
+
+VMware Virtual USB Video Device (usb-0000:02:03.0-1):
+	/dev/video2
+	/dev/video3
+	/dev/media0
+
