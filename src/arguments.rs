@@ -15,7 +15,6 @@ pub enum Commands {
     List,
     Serve {
         device_id: String,
-        device_path: String,
         rtsp_path: String,
     },
 }

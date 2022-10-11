@@ -11,7 +11,7 @@ struct Device {
 
 fn get_devices() -> Vec<Device> {
     #[cfg(target_os = "linux")]
-    let V4L_COMMAND: &str = "v4l-ctl";
+    let V4L_COMMAND: &str = "v4l2-ctl";
     #[cfg(target_os = "macos")]
     let V4L_COMMAND: &str = "./fake-v4l-ctl.sh";
 
@@ -66,7 +66,7 @@ pub fn list_devices_subcommand() {
     }
 }
 
-pub fn serve_webcam_subcommand(device_id: String, device_path: String, rtsp_path: String) {
+pub fn serve_webcam_subcommand(device_id: String, rtsp_path: String) {
     #[cfg(target_os = "linux")]
     if !Path::new(&device_path).exists() {
         println!("Device '{device_path}' wasn't found");
