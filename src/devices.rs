@@ -66,26 +66,20 @@ pub fn list_devices_subcommand() {
     }
 }
 
-pub fn serve_webcam_subcommand(device_id: String, rtsp_path: String) {
-    #[cfg(target_os = "linux")]
-    if !Path::new(&device_path).exists() {
-        println!("Device '{device_path}' wasn't found");
-        return;
-    }
-
+pub fn serve_webcam_subcommand(device_id: String, rtsp_port: u16, rtsp_path: String) {
     if let Some(device) = get_devices().iter().find(|dev| dev.id == device_id) {
         println!(
             "Serving device '{}' located at {}",
             device.name, device.path
         );
 
-        let rtsp_path_str = format!("rtsp://localhost:554/{}", rtsp_path);
+        let rtsp_path_str = format!("rtsp://localhost:{}/{}",rtsp_port, rtsp_path);
 
         let mut command = Command::new("ffmpeg");
 
         command
             .arg("-hide_banner")
-            .args(["-f", "v4l"])
+            .args(["-f", "v4l2"])
             .args(["-i", device.path.as_str()])
             .args(["-pix_fmt", "yuv420p"])
             .args(["-preset", "ultrafast"])

@@ -12,6 +12,7 @@ fn main() {
         arguments::Commands::Serve {
             device_id,
             rtsp_path,
-        } => devices::serve_webcam_subcommand(device_id, rtsp_path),
+            rtsp_port,
+        } => devices::serve_webcam_subcommand(device_id, rtsp_port.unwrap_or(554), rtsp_path),
     }
 }

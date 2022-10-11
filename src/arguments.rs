@@ -16,5 +16,6 @@ pub enum Commands {
     Serve {
         device_id: String,
         rtsp_path: String,
+        rtsp_port: Option<u16>,
     },
 }
