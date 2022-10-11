@@ -1,14 +1,20 @@
 use clap::Parser;
 
-use crate::arguments::Cli;
+use arguments::Cli;
 
 mod arguments;
 mod devices;
 
 fn main() {
+    //Parse the arguments
     let cli = Cli::parse();
+
+    //Do what the user commanded
     match cli.command {
+        //List the available devices
         arguments::Commands::List => devices::list_devices_subcommand(),
+
+        //Or start serving the user selected device
         arguments::Commands::Serve {
             device_id,
             rtsp_path,
