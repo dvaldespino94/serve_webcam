@@ -83,7 +83,7 @@ pub fn serve_webcam_subcommand(device_id: String, rtsp_port: u16, rtsp_path: Str
             .args(["-i", device.path.as_str()])
             .args(["-pix_fmt", "yuv420p"])
             .args(["-preset", "ultrafast"])
-            .arg("-b:v 600k")
+            .arg(["-b:v", "600k"])
             .args(["-f", "rtsp"])
             .arg(rtsp_path_str);
 
